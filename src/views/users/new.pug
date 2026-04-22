@@ -1,0 +1,62 @@
+extends ../layout
+
+block content
+  .row.justify-content-center
+    .col-md-6
+      h1.mb-4 Регистрация
+
+      form(action='/users' method='POST' novalidate)
+        .mb-3
+          label.form-label(for='data_firstName') Имя
+          input.form-control(
+            type='text'
+            id='data_firstName'
+            name='data[firstName]'
+            value=(formData ? formData.firstName : '')
+            class={ 'is-invalid': errors && errors.firstName }
+          )
+          if errors && errors.firstName
+            .invalid-feedback
+              = errors.firstName
+        
+        .mb-3
+          label.form-label(for='data_lastName') Фамилия
+          input.form-control(
+            type='text'
+            id='data_lastName'
+            name='data[lastName]'
+            value=(formData ? formData.lastName : '')
+            class={ 'is-invalid': errors && errors.lastName }
+          )
+          if errors && errors.lastName
+            .invalid-feedback
+              = errors.lastName
+        
+        .mb-3
+          label.form-label(for='data_email') Email
+          input.form-control(
+            type='email'
+            id='data_email'
+            name='data[email]'
+            value=(formData ? formData.email : '')
+            class={ 'is-invalid': errors && errors.email }
+          )
+          if errors && errors.email
+            .invalid-feedback
+              = errors.email
+        
+        .mb-3
+          label.form-label(for='data_password') Пароль
+          input.form-control(
+            type='password'
+            id='data_password'
+            name='data[password]'
+            class={ 'is-invalid': errors && errors.password }
+          )
+          if errors && errors.password
+            .invalid-feedback
+              = errors.password
+        
+        .mb-3
+          button.btn.btn-primary(type='submit') Сохранить
+          a.btn.btn-secondary.ms-2(href='/') Отмена
